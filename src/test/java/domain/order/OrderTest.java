@@ -10,15 +10,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 
-import domain.order.menu.Category;
 import domain.order.menu.Menu;
 import domain.order.menu.MenuQuantity;
+import domain.order.menu.MenuRepository;
 
 class OrderTest {
 
 	@Test
 	void Order_MenuList_GenerateInstance() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Map<Menu, MenuQuantity> menus = new HashMap<>();
 		menus.put(menu, menuQuantity);
@@ -41,17 +41,19 @@ class OrderTest {
 
 	@Test
 	void add_Menu_AddMenuToOrder() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);
 
-		assertThat(order).extracting("order").asList().contains(menu);
+		Map<Menu, MenuQuantity> expected = new HashMap<>();
+		expected.put(menu, menuQuantity);
+		assertThat(order).extracting("order").isEqualTo(expected);
 	}
 
 	@Test
 	void addMenuQuantityIfPresent_AddSameMenu_AddMenuQuantityToPresentMenuQuantity() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);
@@ -64,14 +66,14 @@ class OrderTest {
 	}
 
 	@ParameterizedTest
-	@CsvSource(value = {"10,10000", "25,20000", "39,30000"})
-	void getDiscountAmount_Menus_ReturnDiscountAmountByChicken(final int value, final int expected) {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+	@CsvSource(value = {"10,150000", "25,380000", "39,594000"})
+	void calculateDiscountedAmount_Menus_ReturnDiscountedAmountByChickenQuantity(final int value, final int expected) {
+		final Menu menu = MenuRepository.of(1); // 16_000원
 		final MenuQuantity menuQuantity = MenuQuantity.of(value);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);
 
-		assertThat(order.getDiscountAmount()).isEqualTo(expected);
+		assertThat(order.calculateDiscountedAmount()).isEqualTo(expected);
 	}
 
 }

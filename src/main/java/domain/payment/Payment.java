@@ -1,18 +1,20 @@
 package domain.payment;
 
+import java.util.function.UnaryOperator;
+
 public enum Payment {
 
-	CARD(5),
-	CASH(0);
+	CARD(payingAmount -> 0.0),
+	CASH(payingAmount -> payingAmount * 0.05);
 
-	private final int discountRate;
+	private final UnaryOperator<Double> discountRate;
 
-	Payment(final int discountRate) {
+	Payment(final UnaryOperator<Double> discountRate) {
 		this.discountRate = discountRate;
 	}
 
-	public int getDiscountRate() {
-		return discountRate;
+	public double calculateDiscountedAmount(final double payingAmount) {
+		return discountRate.apply(payingAmount);
 	}
 
 }

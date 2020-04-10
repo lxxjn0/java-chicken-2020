@@ -37,13 +37,32 @@ public class Order {
 		return menuQuantity;
 	}
 
-	public int getDiscountAmount() {
+	public double calculateDiscountedAmount() {
+		return calculateTotalAmount() - calculateDiscountAmount();
+	}
+
+	private double calculateTotalAmount() {
+		return order.entrySet().stream()
+			.mapToDouble(entry -> {
+				Menu menu = entry.getKey();
+				MenuQuantity menuQuantity = entry.getValue();
+				return menu.getPrice().multiply(menuQuantity);
+			})
+			.sum();
+	}
+
+	private double calculateDiscountAmount() {
 		final int totalChickenQuantity = order.entrySet().stream()
 			.filter(entry -> entry.getKey().isChicken())
 			.map(Map.Entry::getValue)
 			.mapToInt(MenuQuantity::getMenuQuantity)
 			.sum();
 
-		return (totalChickenQuantity / DISCOUNT_QUANTITY_UNIT) * Order.DISCOUNT_AMOUNT_UNIT;
+		return calculateDiscountUnit(totalChickenQuantity) * Order.DISCOUNT_AMOUNT_UNIT;
 	}
+
+	private int calculateDiscountUnit(final int totalChickenQuantity) {
+		return totalChickenQuantity / DISCOUNT_QUANTITY_UNIT;
+	}
+
 }

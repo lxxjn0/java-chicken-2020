@@ -4,9 +4,9 @@ public class Menu {
 
 	private final String name;
 	private final Category category;
-	private final int price;
+	private final Price price;
 
-	public Menu(final String name, final Category category, final int price) {
+	Menu(final String name, final Category category, final Price price) {
 		this.name = name;
 		this.category = category;
 		this.price = price;
@@ -17,7 +17,11 @@ public class Menu {
 	}
 
 	public String getMenuInfo(final int number) {
-		return category + " " + number + " - " + name + " : " + price + "원";
+		return category + " " + number + " - " + name + " : " + String.format("%d원", (int)price.getPrice());
+	}
+
+	public Price getPrice() {
+		return price;
 	}
 
 }

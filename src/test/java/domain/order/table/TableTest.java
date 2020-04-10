@@ -37,4 +37,9 @@ class TableTest {
 		assertThat(table.isSameTable(compare)).isEqualTo(expected);
 	}
 
+	@ParameterizedTest
+	@CsvSource(value = {"1,1", "2,2", "3,3"})
+	void toString_Table_TableNumberToString(final int number, final String expected) {
+		assertThat(Table.of(number).toString()).isEqualTo(expected);
+	}
 }

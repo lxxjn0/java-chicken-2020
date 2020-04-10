@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
-import domain.order.menu.Category;
 import domain.order.menu.Menu;
 import domain.order.menu.MenuQuantity;
+import domain.order.menu.MenuRepository;
 import domain.order.table.Table;
 
 class OrdersTest {
@@ -36,7 +36,7 @@ class OrdersTest {
 
 	@Test
 	void add_TableAndOrder_AddTableOrder() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);
@@ -71,7 +71,7 @@ class OrdersTest {
 
 	@Test
 	void contains_TableContains_ReturnTrue() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);
@@ -84,7 +84,7 @@ class OrdersTest {
 
 	@Test
 	void contains_TableNotContains_ReturnFalse() {
-		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
+		final Menu menu = MenuRepository.of(1);
 		final MenuQuantity menuQuantity = MenuQuantity.of(1);
 		final Order order = new Order();
 		order.add(menu, menuQuantity);

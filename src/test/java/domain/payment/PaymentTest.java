@@ -8,9 +8,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 class PaymentTest {
 
 	@ParameterizedTest
-	@CsvSource(value = {"CARD, 5", "CASH, 0"})
-	void getDiscountRate_Payment_ReturnDiscountRate(final Payment payment, final int expected) {
-		assertThat(payment.getDiscountRate()).isEqualTo(expected);
+	@CsvSource(value = {"CARD,0", "CASH,500"})
+	void calculateDiscountedAmount_Payment_ReturnDiscountRate(final Payment payment, final int expected) {
+		final double payingAmount = 10000;
+
+		assertThat(payment.calculateDiscountedAmount(payingAmount)).isEqualTo(expected);
 	}
 
 }
