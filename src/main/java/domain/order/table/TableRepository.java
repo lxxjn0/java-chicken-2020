@@ -1,4 +1,4 @@
-package domain;
+package domain.order.table;
 
 import java.util.ArrayList;
 import java.util.Collections;

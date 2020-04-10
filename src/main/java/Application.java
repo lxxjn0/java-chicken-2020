@@ -1,9 +1,10 @@
 import java.util.List;
+import java.util.Map;
 
-import domain.Menu;
-import domain.MenuRepository;
-import domain.Table;
-import domain.TableRepository;
+import domain.order.menu.Menu;
+import domain.order.menu.MenuRepository;
+import domain.order.table.Table;
+import domain.order.table.TableRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -15,7 +16,7 @@ public class Application {
 
 		final int tableNumber = InputView.inputTableNumber();
 
-		final List<Menu> menus = MenuRepository.menus();
+		final Map<Integer, Menu> menus = MenuRepository.menus();
 		OutputView.printMenus(menus);
 	}
 

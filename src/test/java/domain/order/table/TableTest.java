@@ -1,4 +1,4 @@
-package domain;
+package domain.order.table;
 
 import static org.assertj.core.api.Assertions.*;
 

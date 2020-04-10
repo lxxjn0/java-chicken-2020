@@ -1,4 +1,4 @@
-package domain;
+package domain.order.menu;
 
 public enum Category {
 

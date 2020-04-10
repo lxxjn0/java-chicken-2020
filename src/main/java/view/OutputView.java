@@ -1,9 +1,10 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 
-import domain.Menu;
-import domain.Table;
+import domain.order.menu.Menu;
+import domain.order.table.Table;
 
 public class OutputView {
 
@@ -19,9 +20,12 @@ public class OutputView {
 		printLine(BOTTOM_LINE, size);
 	}
 
-	public static void printMenus(final List<Menu> menus) {
-		for (final Menu menu : menus) {
-			System.out.println(menu);
+	public static void printMenus(final Map<Integer, Menu> menus) {
+		for (final Map.Entry<Integer, Menu> entry : menus.entrySet()) {
+			final int number = entry.getKey();
+			final Menu menu = entry.getValue();
+
+			System.out.println(menu.getMenuInfo(number));
 		}
 	}
 
