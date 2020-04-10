@@ -34,21 +34,4 @@ public class Price {
 		return price;
 	}
 
-	@Override
-	public boolean equals(final Object object) {
-		if (this == object) {
-			return true;
-		}
-		if (object == null || getClass() != object.getClass()) {
-			return false;
-		}
-		final Price that = (Price)object;
-		return Double.compare(that.price, price) == 0;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(price);
-	}
-
 }
