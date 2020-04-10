@@ -1,17 +1,19 @@
 package domain;
 
 public enum Category {
-    CHICKEN("치킨"),
-    BEVERAGE("음료");
 
-    private final String name;
+	CHICKEN("치킨"),
+	BEVERAGE("음료");
 
-    Category(final String name) {
-        this.name = name;
-    }
+	private final String name;
 
-    @Override
-    public String toString() {
-        return "[" + name + "]";
-    }
+	Category(final String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + name + "]";
+	}
+
 }

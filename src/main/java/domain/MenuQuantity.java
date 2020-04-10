@@ -1,6 +1,7 @@
 package domain;
 
 public class MenuQuantity {
+
 	private static final int LOWER_QUANTITY_BOUND = 0;
 	private static final int UPPER_QUANTITY_BOUND = 99;
 
@@ -16,4 +17,5 @@ public class MenuQuantity {
 			throw new IllegalArgumentException("유효한 메뉴 수량이 아닙니다.");
 		}
 	}
+
 }
