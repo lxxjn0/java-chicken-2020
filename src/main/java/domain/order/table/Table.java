@@ -6,8 +6,16 @@ public class Table {
 
 	private final int number;
 
-	public Table(final int number) {
+	Table(final int number) {
 		this.number = number;
+	}
+
+	public static Table of(final int number) {
+		return TableRepository.of(number);
+	}
+
+	public boolean isSameTable(final int number) {
+		return this.number == number;
 	}
 
 	@Override
