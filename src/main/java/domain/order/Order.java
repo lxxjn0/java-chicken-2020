@@ -8,10 +8,10 @@ import domain.order.menu.Menu;
 
 public class Order {
 
-	private final List<Menu> menus;
+	private final List<Menu> order;
 
-	private Order(final List<Menu> menus) {
-		this.menus = menus;
+	public Order(final List<Menu> order) {
+		this.order = order;
 	}
 
 	public Order() {
@@ -20,7 +20,7 @@ public class Order {
 
 	public void addMenu(final Menu menu) {
 		Objects.requireNonNull(menu, "메뉴가 null입니다.");
-		menus.add(menu);
+		order.add(menu);
 	}
 
 }
