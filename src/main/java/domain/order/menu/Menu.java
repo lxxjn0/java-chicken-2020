@@ -12,6 +12,10 @@ public class Menu {
 		this.price = price;
 	}
 
+	public boolean isChicken() {
+		return category.isChicken();
+	}
+
 	public String getMenuInfo(final int number) {
 		return category + " " + number + " - " + name + " : " + price + "원";
 	}

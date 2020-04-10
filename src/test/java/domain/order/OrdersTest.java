@@ -2,7 +2,6 @@ package domain.order;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +11,7 @@ import org.junit.jupiter.params.provider.NullSource;
 
 import domain.order.menu.Category;
 import domain.order.menu.Menu;
+import domain.order.menu.MenuQuantity;
 import domain.order.table.Table;
 
 class OrdersTest {
@@ -37,7 +37,9 @@ class OrdersTest {
 	@Test
 	void add_TableAndOrder_AddTableOrder() {
 		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
-		final Order order = new Order(Arrays.asList(menu));
+		final MenuQuantity menuQuantity = MenuQuantity.of(1);
+		final Order order = new Order();
+		order.add(menu, menuQuantity);
 		final Orders orders = new Orders();
 		final Table table = Table.of(1);
 		orders.add(table, order);
@@ -70,7 +72,9 @@ class OrdersTest {
 	@Test
 	void contains_TableContains_ReturnTrue() {
 		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
-		final Order order = new Order(Arrays.asList(menu));
+		final MenuQuantity menuQuantity = MenuQuantity.of(1);
+		final Order order = new Order();
+		order.add(menu, menuQuantity);
 		final Orders orders = new Orders();
 		final Table table = Table.of(1);
 		orders.add(table, order);
@@ -81,7 +85,9 @@ class OrdersTest {
 	@Test
 	void contains_TableNotContains_ReturnFalse() {
 		final Menu menu = new Menu("후라이드", Category.CHICKEN, 16_000);
-		final Order order = new Order(Arrays.asList(menu));
+		final MenuQuantity menuQuantity = MenuQuantity.of(1);
+		final Order order = new Order();
+		order.add(menu, menuQuantity);
 		final Orders orders = new Orders();
 		final Table table = Table.of(1);
 		orders.add(table, order);

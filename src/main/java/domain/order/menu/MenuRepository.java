@@ -1,12 +1,12 @@
 package domain.order.menu;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MenuRepository {
 
-	private static final Map<Integer, Menu> menus = new HashMap<>();
+	private static final Map<Integer, Menu> menus = new LinkedHashMap<>();
 
 	static {
 		menus.put(1, new Menu("후라이드", Category.CHICKEN, 16_000));
