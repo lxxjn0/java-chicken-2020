@@ -1,4 +1,8 @@
-# java-chicken-2020
+# 🍗 java-chicken-2020
+
+> 레벨 1 수료식 - 치킨집 미션을 진행하는 Repository
+
+<br/>
 
 ## 기능 구현 목록
 
